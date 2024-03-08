@@ -1,9 +1,14 @@
 package com.example.session10;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -25,5 +30,6 @@ public class HomeActivity extends AppCompatActivity {
         username.setText(uname);
         email.setText(mail);
         password.setText(psw);
+
     }
 }
