@@ -14,11 +14,18 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
+
 public class HomeActivity extends AppCompatActivity {
 
     TextView username, email, password;
     AlertDialog alertDialog;
     Button pdialog;
+    TabLayout tabLayout;
+    ViewPager2 viewPager2;
+    PagerAdapter pagerAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +35,9 @@ public class HomeActivity extends AppCompatActivity {
         email = findViewById(R.id.tv_email);
         password = findViewById(R.id.tv_password);
         pdialog = findViewById(R.id.pdialog);
+        tabLayout = findViewById(R.id.tabLayout);
+        viewPager2 = findViewById(R.id.viewPager);
+        setViewPager2(viewPager2);
 
         Intent intent = getIntent();
         String uname = intent.getStringExtra("username_user");
@@ -59,6 +69,9 @@ public class HomeActivity extends AppCompatActivity {
         pdialog.setOnClickListener(v->{
             progressDialog.show();
         });
+
+        new TabLayoutMediator(tabLayout, viewPager2,
+                ((tab, position) -> tab.setText(pagerAdapter.getPageTitle(position)))).attach();
     }
 
     @Override
@@ -78,6 +91,17 @@ public class HomeActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void setViewPager2(ViewPager2 viewPager2){
+        if(pagerAdapter == null){
+            pagerAdapter = new PagerAdapter(this);
+            pagerAdapter.addFragment(new FragmentFirst(), "First");
+            pagerAdapter.addFragment(new FragmentSecond(), "Second");
+            pagerAdapter.addFragment(new FragmentThird(), "Third");
+            viewPager2.setAdapter(pagerAdapter);
+        }
+    }
+
 }
 
 // alert dialog -> buat kasi pilihan ke user mau milih apa. are you sure want to exit? yes/no
