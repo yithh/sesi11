@@ -32,4 +32,11 @@
         android:textSize="24dp"
         android:id="@+id/tv_email"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Progress Dialog"
+        android:layout_marginTop="20dp"
+        android:id="@+id/pdialog"/>
+
 </LinearLayout>
